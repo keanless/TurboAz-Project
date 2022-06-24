@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link
+        href="https://turbo.azstatic.com/assets/favicons/favicon-192x192-bfda602634a6b895afb1690b599d49d14372c10b00a6d339d7407251621dcc1a.png"
+        rel="icon" type="image/png" />
+    <script src="https://kit.fontawesome.com/4d1a476c5d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="./lodash.js"></script>
+    <title>Turbo.Az - Avtomobilləri burada seçirlər</title>
+</head>
+
+<body>
+    <div class="header-banner">
+        <a href="https://changan.az/uni-k/"><img src="./img/turbopx.jpg" alt="Banner"></a>
+    </div>
+    </div>
+    <div class="container">
+        <div class="navbar-top">
+            <div class="outer-links">
+                <a target="_blank"
+                    href="https://tap.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo">Tap.az</a>
+                <a target="_blank"
+                    href="https://bina.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo">Bina.az</a>
+                <a target="_blank"
+                    href="https://boss.az/?utm_source=turboaz&utm_medium=desktop-nav&utm_campaign=only-logo">Boss.az</a>
+            </div>
+            <div class="navbar-contact">
+                <span>Dəstək xidməti:</span>
+                <span><a href="tel:(012) 599-08-01">(012) 599-08-01</a>;</span>
+                <span><a href="tel: (012) 505-77-55">(012) 505-77-55</a></span>
+                <a href="#" id="navbar-lang">RU</a>
+            </div>
+            <div class="navbar-login-fav">
+                <div class="navbar-fav">
+                    <a href="#"> <i class="fa-solid fa-heart"></i> Seçilmişlər</a>
+                </div>
+                <div class="navbar-login">
+                    <a href="#"> <i class="fa-solid fa-circle-user"></i> Giriş</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar-bottom">
+        <div class="container">
+
+            <div class="navbar-bottom-links">
+                <div class="navbar-logo">
+                    <a href="#">TURBO.AZ</a>
+                </div>
+                <div class="navbar-links">
+                    <a href="#"> Bütün elanlar</a>
+                    <a href="#"> Avtosalonlar</a>
+                    <div class="dropdown">
+                        <a href="#" id="dropdown-link">Ehtiyat hissələr və aksesuarlar</a>
+                        <div class="dropdown-content">
+                            <a href="#">Aksesuarlar</a>
+                            <a href="#">Audio və video texnika</a>
+                            <a href="#">Avtokosmetika və avtokimya</a>
+                            <a href="#">Ehtiyat hissələr</a>
+                            <a href="#">Ehtiyat hissələr</a>
+                            <a href="#">GPS naviqatorlar</a>
+                            <a href="#">GPS naviqatorlar</a>
+                            <a href="#">Qeydiyyat nişanları</a>
+                            <a href="#">Siqnalizasiyalar</a>
+                            <a href="#">Digər</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-advs">
+                    <a href="#"> <i class="fa-solid fa-circle-plus"></i> <span> Yeni elan </span> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main-section">
+            <div class="search-catalogs">
+                <div class="search-section-1 search-section-padding">
+                    <div class="brand-section">
+                        <select id="brands" class="js-example-basic-single" data-placeholder="Marka"
+                            data-allow-clear="true"></select>
+                        </select>
+                    </div>
+                    <div class="price-section">
+                        <input type="number" inputmode="numeric" id="minumumInput" name="minumumInput"
+                            placeholder="Qiymət,min.">
+                        <input type="number" inputmode="numeric" id="maxiumumInput" placeholder="maks.">
+                    </div>
+                </div>
+                <div class="search-section-2 search-section-padding">
+                    <select id="models" class="js-example-basic-single" data-allow-clear=true data-placeholder="Model">
+                        <option></option>
+                    </select>
+                    <div class="currency-credit flex">
+                        <select id="currency">
+                            <option value="" disabled selected style="display: none;">AZN</option>
+                            <option>AZN</option>
+                            <option value="$">USD</option>
+                            <option>EUR</option>
+                        </select>
+                        <div class="flex">
+                            <div class="kredit">
+                                <input type="checkbox" id="kredit"> <label for="kredit"
+                                    style="cursor: pointer">Kredit</label>
+                            </div>
+                            <div class="barter">
+                                <input type="checkbox" id="barter"> <label for="barter"
+                                    style="cursor: pointer">Barter</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="search-section-3 search-section-padding">
+                    <div class="new-or-old">
+                        <div class="new-and-old">
+                            <input type="radio" id="all" name="new-or-old"><label for="all">Hamısı</label>
+                        </div>
+                        <div class="new">
+                            <input type="radio" id="new" name="new-or-old"> <label for="new">Yeni</label>
+                        </div>
+                        <div class="old">
+                            <input type="radio" id="old" name="new-or-old"> <label for="old">Sürülmüş</label>
+                        </div>
+
+                    </div>
+                    <select placeholder="Rəngi" class="js-example-basic-single" data-placeholder="Rəngi" data-allow-clear="true" id="color">
+                       <option selected></option>
+                        <option>Ağ</option>
+                        <option>Qara</option>
+                        <option>Yaşıl</option>
+                        <option>Boz</option>
+                        <option>Mavi</option>
+                    </select>
+                </div>
+                <div class="search-section-4 search-section-padding">
+                    <select id="city" class="js-example-basic-single" data-placeholder="Şəhər" data-allow-clear="true">
+                        <option></option>
+                        <option>Ağdam</option>
+                        <option>Ağsu</option>
+                        <option>Bakı</option>
+                        <option>Bərdə</option>
+                        <option>Şəki</option>
+                        <option>Qazax</option>
+                    </select>
+                    <input type="number" inputmode="numeric" id="minumumYear" name="minumumInput" placeholder="İl,min.">
+                    <input type="number" inputmode="numeric" id="maximumYear" placeholder="maks.">
+                </div>
+            </div>
+
+            <div class="search-buttons">
+                <div id="today">Bu gün : </div>
+                <button  id="resetAll"><span>Sıfırla</span></button>
+                <button><span>Daha çox filtr</span></button>
+                <button id="search">Elanları göstər</button>
+            </div>
+            <div id="cards" class="cards">
+            </div>
+        </div>
+    </div>
+    <div id="salam"></div>
+    <!-- footer -->
+    <div class="all-footer-top">
+        <div class="footer-top-container">
+            <div class="footer-top-contact">
+                <div class="footer-top-link">
+                    <a href="">Reklam yerləşdirin</a>
+                </div>
+                <div class="footer-contact">
+                    <div class="social-media">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+
+                    <div class="footer-mail">
+                        <a href=""><i class="fas fa-envelope"></i>turbo@turbo.az</a>
+                    </div>
+                    <div class="all-contact">
+                        <ul>
+                            <i class="fas fa-phone-alt"></i>
+                            <div class="phone-number">
+                                <p><a href="+994125990801">(012) 599-08-01</a></p>
+                                <p><a href="+994125057755">(012) 505-77-55</a></p>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="all-footer-main"></div>
+    <div class="footer-container">
+        <div class="footer-main">
+            <div class="footer-main-link">
+                <a href="">Qaydalar</a>
+                <a href="">Qanun</a>
+                <a href="">İstifadəçi razılaşması</a>
+                <a href="">Məxfilik siyasəti</a>
+            </div>
+            <div></div>
+        </div>
+    </div>
+    <div class="all-footer-bottom">
+        <div class="footer-bottom-container">
+            <div class="footer-bottom">
+                <div class="footer-information">
+                    <p>Saytın Administrasiyası reklam bannerlərinin və yerləşdirilmiş elanların məzmununa görə
+                        məsuliyyət daşımır.</p>
+                </div>
+                <div class="footer-bottom-link">
+                    <p>2006-2022 Digital Classifieds MMC. VÖEN: 1405631661</p>
+                    <a href="">Mobil versiyası</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
