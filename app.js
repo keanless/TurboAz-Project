@@ -72,9 +72,7 @@ document.getElementById("all").onchange = function () {
 
 // Getting local Json file by using fetch and declare functions to use assigned data
 function fetching() {
-  fetch("db.json", {
-    mode: "cross-origin",
-  })
+  fetch("https://62de8b889c47ff309e7632ba.mockapi.io/turboaz")
     .then((response) => response.json())
     .then((data) => {
       showCards(data);
@@ -120,7 +118,7 @@ function reset(data) {
     document.querySelector(".barter").style.borderColor = "black";
 
     let cards = "";
-    for (let e of data.cars) {
+    for (let e of data) {
       if (e.crediturl !== undefined && e.barterurl !== undefined) {
         cards += `
     <div class="card-1">
@@ -189,7 +187,7 @@ function reset(data) {
 
 function showCards(data) {
   let cards = "";
-  for (let e of data.cars) {
+  for (let e of data) {
     if (e.crediturl !== undefined && e.barterurl !== undefined) {
       cards += `
   <div class="card-1">
@@ -257,11 +255,11 @@ function showCards(data) {
 
 function todayCars(data) {
   let today = document.getElementById("today");
-  today.innerHTML += ` <a href="" style="color:#4c88f9"> ${data.cars.length} yeni elan  </a> `;
+  today.innerHTML += ` <a href="" style="color:#4c88f9"> ${data.length} yeni elan  </a> `;
 }
 
 function showBrandOptions(data) {
-  let brand = data.cars.filter(
+  let brand = data.filter(
     (value, index, e) => index === e.findIndex((a) => a.brand === value.brand)
   );
   brands = `<option></option>`;
@@ -276,7 +274,7 @@ function showBrandOptions(data) {
 function showModelOptions(data) {
   document.getElementById("brands").onchange = () => {
     let carSelectedBrand = document.getElementById("brands").value;
-    let model = data.cars.filter(
+    let model = data.filter(
       (value, index, e) => index === e.findIndex((a) => a.model === value.model)
     );
 
@@ -300,7 +298,7 @@ function showModelOptions(data) {
 
 function filterByOption(data) {
   document.getElementById("search").onclick = () => {
-    for (let e of data.cars) {
+    for (let e of data) {
       let filteredBrand = "";
       let filteredModel = "";
       let carPrice = "";
@@ -325,10 +323,10 @@ function filterByOption(data) {
       let newRadiobox = document.getElementById("new").checked;
       let oldRadiobox = document.getElementById("old").checked;
 
-      let carBrand = _.filter(data.cars, {
+      let carBrand = _.filter(data, {
         brand: brand,
       });
-      let carModel = _.filter(data.cars, {
+      let carModel = _.filter(data, {
         model: carModelValue,
       });
       carPriceRange = _.filter(carBrand, function (a) {
@@ -340,10 +338,9 @@ function filterByOption(data) {
       let filteredCarCurrency = _.filter(carBrand, {
         currency: currencyValue,
       });
-      let filteredCredit = _.filter(data.cars, {
+      let filteredCredit = _.filter(data, {
         credit: true,
       });
-
       let filteredBrandCredit = _.filter(carBrand, {
         credit: true,
       });
@@ -356,7 +353,7 @@ function filterByOption(data) {
       let filteredCurrencyCredit = _.filter(filteredCarCurrency, {
         credit: true,
       });
-      let priceAllRange = _.filter(data.cars, function (a) {
+      let priceAllRange = _.filter(data, function (a) {
         return a.price >= priceMin && a.price <= priceMax;
       });
       // Reng filting
@@ -364,14 +361,14 @@ function filterByOption(data) {
       let filteredColor = "";
       filteredColor = e.reng;
       let color = document.getElementById("color").value;
-      let carColor = _.filter(data.cars, {
+      let carColor = _.filter(data, {
         reng: color,
       });
       let carBrandcolor = _.filter(carBrand, {
         reng: color,
       });
       // Creating
-      let filteredBarter = _.filter(data.cars, {
+      let filteredBarter = _.filter(data, {
         credit: true,
       });
 
@@ -392,7 +389,7 @@ function filterByOption(data) {
         credit: true,
       });
 
-      let carPricecolor = _.filter(data.cars, function (a) {
+      let carPricecolor = _.filter(data, function (a) {
         return a.price >= priceMin && a.price <= priceMax;
       });
       let carBrandModelPriceColor = _.filter(carModel, function (a) {
@@ -421,16 +418,15 @@ function filterByOption(data) {
         reng: color,
       });
       let filteredcarCurrencyBrandModelPriceColor = _.filter(
-        carCurrencyBrandModelPriceColor,
-        {
+        carCurrencyBrandModelPriceColor, {
           reng: color,
         }
       );
       // Car Date filter
-      let filteredNewCars = _.filter(data.cars, function (a) {
+      let filteredNewCars = _.filter(data, function (a) {
         return a.date >= 2019;
       });
-      let filteredOldCars = _.filter(data.cars, function (a) {
+      let filteredOldCars = _.filter(data, function (a) {
         return a.date < 2019;
       });
       let filtereBranddNewCars = _.filter(carBrand, function (a) {
@@ -441,7 +437,7 @@ function filterByOption(data) {
       });
 
       // City Filtering
-      let filterCityAll = _.filter(data.cars, {
+      let filterCityAll = _.filter(data, {
         city: cityValue,
       });
       let filterCityBrand = _.filter(carBrand, {
@@ -455,7 +451,7 @@ function filterByOption(data) {
       });
 
       // Car year filter
-      let carYearAll = _.filter(data.cars, function (a) {
+      let carYearAll = _.filter(data, function (a) {
         return a.date >= yearMin && a.date <= yearMax;
       });
       let carYearBrand = _.filter(carBrand, function (a) {
@@ -837,7 +833,7 @@ function filterByOption(data) {
 
       if (barterCheckbox === true && kreditCheckbox === false) {
         let currencyCards = "";
-        let onlyBarter = _.filter(data.cars, {
+        let onlyBarter = _.filter(data, {
           barter: true,
           credit: false,
         });
@@ -861,7 +857,7 @@ function filterByOption(data) {
       }
       if (barterCheckbox === true && kreditCheckbox === true) {
         let currencyCards = "";
-        let onlyBarter = _.filter(data.cars, {
+        let onlyBarter = _.filter(data, {
           barter: true,
           credit: true,
         });
@@ -1459,7 +1455,7 @@ function filterByOption(data) {
         document.getElementById("cards").innerHTML = brandCards;
       }
       if (color.length > 0 && currencyValue.length > 0) {
-        let allCurrency = _.filter(data.cars, {
+        let allCurrency = _.filter(data, {
           currency: currencyValue,
         });
         let allCurrencyColor = _.filter(allCurrency, {
@@ -1484,7 +1480,7 @@ function filterByOption(data) {
         document.getElementById("cards").innerHTML = brandCards;
       }
       if (color.length > 0 && kreditCheckbox === true) {
-        let filteredCredit = _.filter(data.cars, {
+        let filteredCredit = _.filter(data, {
           credit: true,
         });
 
@@ -1515,7 +1511,7 @@ function filterByOption(data) {
         kreditCheckbox === false &&
         barterCheckbox === true
       ) {
-        let filteredCredit = _.filter(data.cars, {
+        let filteredCredit = _.filter(data, {
           barter: true,
         });
 
@@ -1546,7 +1542,7 @@ function filterByOption(data) {
         kreditCheckbox === true &&
         barterCheckbox === true
       ) {
-        let filteredCredit = _.filter(data.cars, {
+        let filteredCredit = _.filter(data, {
           barter: true,
           credit: true,
         });
@@ -1752,7 +1748,7 @@ function filterByOption(data) {
         priceMax.length == 0 &&
         color.length == 0
       ) {
-        let allCurrency = _.filter(data.cars, {
+        let allCurrency = _.filter(data, {
           currency: currencyValue,
         });
         let brandCards = "";
@@ -2032,8 +2028,7 @@ function filterByOption(data) {
         carCurrency.length > 0 &&
         priceMax.length > 0 &&
         priceMin.length > 0
-      ) {
-      }
+      ) {}
     }
   };
 }

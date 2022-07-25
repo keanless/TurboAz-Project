@@ -1,5 +1,5 @@
-{
-  "cars": [
+[
+ 
     {
       "id": 1,
       "brand": "BMW",
@@ -234,5 +234,6 @@
       "milestone": "143 000",
       "url": "https://turbo.azstatic.com/uploads/full/2022%2F05%2F25%2F09%2F50%2F11%2Fb0794f64-de55-4ca5-bc29-70425c4bc440%2F55488_AdGxG9MqlRltqxmSJW08NQ.jpg"
     }
-  ]
-}
+  
+
+]
