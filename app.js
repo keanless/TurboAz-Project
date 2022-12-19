@@ -72,7 +72,7 @@ document.getElementById("all").onchange = function () {
 
 // Getting local Json file by using fetch and declare functions to use assigned data
 function fetching() {
-  fetch("https://62de8b889c47ff309e7632ba.mockapi.io/turboaz")
+  fetch("db.json")
     .then((response) => response.json())
     .then((data) => {
       showCards(data);
